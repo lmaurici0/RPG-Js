@@ -16,12 +16,14 @@ const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
+
 const weapons = [
   { name: 'graveto', power: 5 },
   { name: 'adaga', power: 30 },
   { name: 'martelo', power: 50 },
   { name: 'espada', power: 100 }
 ];
+
 const monsters = [
   {
     name: "Slime",
@@ -30,15 +32,16 @@ const monsters = [
   },
   {
     name: "Besta",
-    level: 8,
+    level: 10,
     health: 60
   },
   {
     name: "Dragão",
-    level: 20,
+    level: 100,
     health: 300
   }
 ]
+
 const locations = [
   {
     name: "town square",
@@ -48,7 +51,7 @@ const locations = [
   },
   {
     name: "store",
-    "button text": ["Comprar 10 hp (10 moedas)", "Comprar arma (30 moedas)", "Ir para o centro"],
+    "button text": ["Comprar 10 hp (10 moedas)", "Comprar arma", "Ir para o centro"],
     "button functions": [buyHealth, buyWeapon, goTown],
     text: "Você entra na loja."
   },
@@ -90,11 +93,6 @@ const locations = [
   }
 ];
 
-// initialize buttons
-button1.onclick = goStore;
-button2.onclick = goCave;
-button3.onclick = fightDragon;
-
 function update(location) {
   monsterStats.style.display = "none";
   button1.innerText = location["button text"][0];
@@ -129,16 +127,19 @@ function buyHealth() {
   }
 }
 
+let weaponPrice = 30; 
+
 function buyWeapon() {
   if (currentWeapon < weapons.length - 1) {
-    if (gold >= 30) {
-      gold -= 30;
+    if (gold >= weaponPrice) {
+      gold -= weaponPrice;
       currentWeapon++;
       goldText.innerText = gold;
       let newWeapon = weapons[currentWeapon].name;
-      text.innerText = "Consegiui " + newWeapon + ".";
+      text.innerText = "Conseguiu " + newWeapon + ".";
       inventory.push(newWeapon);
       text.innerText += " Você possui no inventário: " + inventory;
+      weaponPrice += 10; 
     } else {
       text.innerText = "Você não tem recursos suficientes para comprar uma arma!";
     }
@@ -148,6 +149,7 @@ function buyWeapon() {
     button2.onclick = sellWeapon;
   }
 }
+
 
 function sellWeapon() {
   if (inventory.length > 1) {
@@ -185,13 +187,13 @@ function goFight() {
 }
 
 function attack() {
-  text.innerText = monsters[fighting].name + " ataca.";
-  text.innerText += " Você revida com seu " + weapons[currentWeapon].name + ".";
+  text.innerText = monsters[fighting].name + " attacks.";
+  text.innerText += " You give again w/ ur " + weapons[currentWeapon].name + ".";
   health -= getMonsterAttackValue(monsters[fighting].level);
   if (isMonsterHit()) {
-    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;    
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 10;    
   } else {
-    text.innerText += " Você perdeu.";
+    text.innerText += " Miss.";
   }
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
@@ -205,7 +207,7 @@ function attack() {
     }
   }
   if (Math.random() <= .1 && inventory.length !== 1) {
-    text.innerText += " Sua " + inventory.pop() + " quebrou.";
+    text.innerText += " Ur " + inventory.pop() + " Broke.";
     currentWeapon--;
   }
 }
