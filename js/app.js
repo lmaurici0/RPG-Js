@@ -5,7 +5,7 @@ let currentWeapon = 0;
 let fighting;
 let monsterHealth;
 let inventory = ["graveto"];
-let weaponPrice = 30;
+let weaponPrice = 50;
 let username = "";
 let startTime;
 let endTime;
@@ -25,10 +25,12 @@ const caveAudio = document.querySelector("#caveAudio");
 const audio = document.querySelector("#audioDragon");
 
 const weapons = [
-  { name: "graveto", power: 5 },
-  { name: "adaga", power: 30 },
-  { name: "martelo", power: 50 },
-  { name: "espada", power: 100 },
+  { name:     "graveto",        power: 5 },
+  { name:     "adaga",          power: 25 },
+  { name:     "martelo",        power: 50 },
+  { name:     "espada",         power: 75 },
+  {name:      "big bertha",     power:100},
+  {name:      "Machado D'água", power: 500}
 ];
 
 const monsters = [
@@ -41,6 +43,21 @@ const monsters = [
     name: "Besta",
     level: 10,
     health: 60,
+  },
+  {
+    name: "Esqueleto",
+    level: 15,
+    health: 105
+  },
+  {
+    name: "Zumbi", 
+    level: 20,
+    health: 155 
+  },
+  {
+    name: "Ultra Esqueleto",
+    level: 25,
+    health:250
   },
   {
     name: "Dragão",
@@ -57,9 +74,9 @@ const locations = [
     text: "Você está no centro. Você deveria olhar a loja...",
   },
   {
-    name: "store",
+    name: "loja",
     "button text": [
-      "Comprar 10 hp (10 moedas)",
+      "Comprar 10 hp",
       "Comprar arma",
       "Ir para o centro",
     ],
@@ -67,39 +84,45 @@ const locations = [
     text: "Você entra na loja.",
   },
   {
-    name: "cave",
+    name: "caverna",
     "button text": ["Lutar com Slime", "Lutar com Besta", "Ir para o centro"],
     "button functions": [fightSlime, fightBeast, goTown],
     text: "Você entra na caverna e vê alguns monstros.",
   },
   {
-    name: "fight",
+    name: "Supercaverna",
+    "button text": ["Lutar com Esqueleto", "Lutar com Zumbi", "Lutar com Super Esqueleto"],
+    "button functions": [fightSkeleton, fightZombie, fightUltraSkeleton],
+    text: "Você entra numa caverna sem saída, mate um dos monstros para sair vivo."
+  },
+  {
+    name: "lutar",
     "button text": ["Atacar", "Desviar", "Fugir"],
     "button functions": [attack, dodge, goTown],
     text: "Você está lutando com um monstro.",
   },
   {
-    name: "kill monster",
+    name: "matar monstro",
     "button text": ["Ir para o centro", "Ir para o centro", "Ir para o centro"],
     "button functions": [goTown, goTown, easterEgg],
     text: 'o monstro grita "Arg!" antes de morrer. Você ganha ouro e xp',
   },
   {
-    name: "lose",
+    name: "perda",
     "button text": ["Replay", "Replay", "Replay"],
     "button functions": [restart, restart, restart],
     text: "Você morreu. &#x2620;",
   },
   {
-    name: "win",
+    name: "ganho",
     "button text": ["Replay", "Replay", "Replay"],
     "button functions": [restart, restart, restart],
     text: " parabéns! Você matou o dragão, você terminou sua jornada.! &#x1F389;",
   },
   {
-    name: "easter egg",
-    "button text": ["2", "8", "Ir para o centro"],
-    "button functions": [pickTwo, pickEight, goTown],
+    name: "roleta russa",
+    "button text": ["0", "1", "Ir para o centro"],
+    "button functions": [pickZero, pickOne, goTown],
     text: "Você encontrou o segredo do rei, escolha uma das 2 opções para ser sorteado, mas cuidado, você pode morrer. Que os jogos comecem.",
   },
 ];
@@ -126,12 +149,17 @@ function goStore() {
 }
 
 function goCave() {
-  update(locations[2]);
+  if (xp > 13) {
+    update(locations[3]); 
+  } else {
+    update(locations[2]); 
+  }
   caveAudio.pause();
   caveAudio.currentTime = 0;
   caveAudio.src = "sounds/cave_sound.mp3";
   caveAudio.play();
 }
+
 
 function buyHealth() {
   if (gold >= 10) {
@@ -154,7 +182,7 @@ function buyWeapon() {
       text.innerText = "Conseguiu " + newWeapon + ".";
       inventory.push(newWeapon);
       text.innerText += " Você possui no inventário: " + inventory;
-      weaponPrice += 10;
+      weaponPrice += 50;
     } else {
       text.innerText =
         "Você não tem recursos suficientes para comprar uma arma!";
@@ -168,7 +196,7 @@ function buyWeapon() {
 
 function sellWeapon() {
   if (inventory.length > 1) {
-    gold += 15;
+    gold += 30;
     goldText.innerText = gold;
     let currentWeapon = inventory.shift();
     text.innerText = "Vendido " + currentWeapon + ".";
@@ -188,8 +216,23 @@ function fightBeast() {
   goFight();
 }
 
-function fightDragon() {
+function fightSkeleton() {
   fighting = 2;
+  goFight();
+}
+
+function fightZombie() {
+  fighting = 3;
+  goFight();
+}
+
+function fightUltraSkeleton() {
+  fighting = 4;
+  goFight();
+}
+
+function fightDragon() {
+  fighting = 5;
   goFight();
   caveAudio.pause();
   audio.currentTime = 0;
@@ -198,7 +241,7 @@ function fightDragon() {
 }
 
 function goFight() {
-  update(locations[3]);
+  update(locations[4]);
   monsterHealth = monsters[fighting].health;
   monsterStats.style.display = "block";
   monsterName.innerText = monsters[fighting].name;
@@ -220,7 +263,7 @@ function attack() {
   if (health <= 0) {
     lose();
   } else if (monsterHealth <= 0) {
-    if (fighting === 2) {
+    if (fighting === 5) {
       winGame();
     } else {
       defeatMonster();
@@ -251,15 +294,15 @@ function defeatMonster() {
   xp += monsters[fighting].level;
   goldText.innerText = gold;
   xpText.innerText = xp;
-  update(locations[4]);
-}
-
-function lose() {
   update(locations[5]);
 }
 
-function winGame() {
+function lose() {
   update(locations[6]);
+}
+
+function winGame() {
+  update(locations[7]);
 }
 
 function restart() {
@@ -275,15 +318,15 @@ function restart() {
 }
 
 function easterEgg() {
-  update(locations[7]);
+  update(locations[8]);
 }
 
-function pickTwo() {
-  pick(2);
+function pickZero() {
+  pick(0);
 }
 
-function pickEight() {
-  pick(8);
+function pickOne() {
+  pick(1);
 }
 
 function pick(guess) {
