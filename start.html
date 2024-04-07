@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon's Era</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/extras.css">
+    <link rel="shortcut icon" href="images/favicon.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.jpg" type="image/x-icon">
+
+    <style>
+        body {
+            background-image: url("https://i.pinimg.com/originals/70/9a/bf/709abf01d17e599c6319d4ffe5100d4c.gif");
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            margin: 23% auto;
+        }
+
+        audio {
+            display: none;
+        }
+
+        @media (max-width:1000px) {
+            body {
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                min-height: 80vh;
+                max-height: 100vh;
+                overflow-y: hidden;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio autoplay loop>
+        <source src="sounds/background-sound.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <div class="start">
+        <h1 class="titleStart">Dragon's Era</h1>
+        <button class="spiky-button" onclick="transfer()">Start</button>
+    </div>
+
+    <script src="js/style.js"></script>
+</body>
+
+</html>
