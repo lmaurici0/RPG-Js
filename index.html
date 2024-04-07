@@ -2,61 +2,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>RPG - Dragon Era</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
         integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/extras.css">
+    <link rel="shortcut icon" href="images/favicon.jpg" type="image/x-icon">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body{
+            padding: 100px;
+        }
+    </style>
 </head>
-
 <body>
+    <p class="container">
+    <h1 class="text-center">Tutorial</h1>
 
-    <main id="game">
+    <p class="text-center resume">
+        Em Dragon's Era, assuma o papel de um cavaleiro real do reino de Laramar, encarregado de resgatar a princesa
+        Lara
+        das garras
+        de um terrível dragão. O destino do reino pende perigosamente enquanto a ameaça da destruição paira sobre ele.
+        Sua missão é crucial:
+        derrotar o dragão e garantir a segurança da princesa, preservando a estabilidade e a paz em Laramar. Prepare-se
+        para uma jornada
+        repleta de desafios, batalhas épicas e a chance de se tornar um herói lendário nesta emocionante aventura de
+        fantasia.
+    </p>
+    <span>Você pode seguir essas dicas para jogar</span>
+    <nav>
+        <ul>
+            <li>Derrotar o máximo de monstros antes de ir para a batalha final.</li>
+            <li>Comprar as melhores armas.</li>
+            <li>Triplique sua vida para facilitar a batalha final.</li>
+            <li>Tente adivinhar o número secreto para ganhar ouro</li>
+            <li>Venda armas para ganhar ouro.</li>
+        </ul>
+    </nav>
 
-        <section class="player">
+    <p>Acho que nosso guerreiro está pronto...</p>
 
-            <div id="stats" class="stats">
-                <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
-                <span class="stat">Health: <strong><span id="healthText">100</span></strong></span>
-                <span class="stat">Gold: <strong><span id="goldText">50</span></strong></span>
-            </div>
+    <a href="start.html">
+        <button class="spiky-button continue">Continuar</button>
+    </a>
 
-            <div id="controls" class="controls">
-                <button id="button1">Go to store</button>
-                <button id="button2">Go to cave</button>
-                <button id="button3">Fight dragon</button>
-            </div>
+    </div>
 
-        </section>
-
-
-        <section class="monster welcome">
-            <div id="monsterStats" class="monsterStats">
-                <span class="stat">Monster Name: <strong><span id="monsterName"></span></strong></span>
-                <span class="stat">Health: <strong><span id="monsterHealth"></span></strong></span>
-            </div>
-
-            <div id="text" class="message">
-                <p>Bem - Vindo à Dragon Era. Sua missão é impedir que o dragão destrua o reino de Laramar, qual será o
-                    primeiro passo
-                    da sua jornada? <strong>Jogue com os botões</strong>
-                </p>
-            </div>
-        </section>
-
-    </main>
-   
-    <script src="js/app.js"></script>
 </body>
 
 </html>
