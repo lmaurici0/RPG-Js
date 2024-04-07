@@ -1,4 +1,4 @@
-##Dragon's Era
+<h1>Dragon's Era</h1>
 Dragon's Era é um rpg point and click no qual sua missão é derrotar monstros, melhorar seu arsenal e por último, matar o terrível dragão que aterroriza o reino de Laramar.
 
 ##Desenvolvimento
