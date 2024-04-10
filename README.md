@@ -11,4 +11,4 @@ O projeto é desenvolvido com HTML, CSS e Js. Para desenvolve-lo em sua casa voc
 </ul>
 
 <h2>Gameplay</h2>
-Com uma gameplay simples, você pode se aventurar em clicando no <a href="https://rpg-deploy.vercel.app/">link</a>
+Com uma gameplay simples, você pode se aventurar em clicando no <a href="https://rpg-deploy.vercel.app/">link a seguir. </a>
